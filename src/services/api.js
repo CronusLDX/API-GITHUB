@@ -16,16 +16,16 @@ export const getLangsFrom = (repositories) => {
 
   for (let repository of repositories) {
     const language = repository.language;
-    languageCounts[language] = (languageCounts[language] || 0) + 1;
+    if (language) {
+      languageCounts[language] = (languageCounts[language] || 0) + 1;
+    }
   }
-
-  delete languageCounts.null;
 
   const languages = Object.keys(languageCounts)
     .map((language) => ({
       name: language,
       count: languageCounts[language],
-      color: langColors[language.toLowerCase()],
+      color: langColors[language.toLowerCase()] || '#000000',  // Fallback color if not found
     }))
     .sort((a, b) => b.count - a.count);
 
