@@ -12,6 +12,10 @@ export const getRepos = async (login) => api.get(`/users/${login}/repos`);
 export default api;
 
 export const getLangsFrom = (repositories) => {
+  if (!Array.isArray(repositories)) {
+    throw new TypeError("Expected repositories to be an array");
+  }
+
   let getLanguage = repositories
     .map((repository) => repository.language)
     .reduce((data, language) => ({
@@ -21,7 +25,6 @@ export const getLangsFrom = (repositories) => {
 
   delete getLanguage.null;
 
-  // Criar um novo array com todas as chaves do objeto
   getLanguage = Object.keys(getLanguage)
     .map((language) => ({
       name: language,
