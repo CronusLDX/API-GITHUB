@@ -12,12 +12,6 @@ export const getRepos = async (login) => api.get(`/users/${login}/repos`);
 export default api;
 
 export const getLangsFrom = (repositories) => {
-  // Verificação adicional para garantir que `repositories` é um array
-  if (!Array.isArray(repositories)) {
-    console.error("Expected repositories to be an array, but got:", repositories);
-    return [];
-  }
-
   let getLanguage = repositories
     .map((repository) => repository.language)
     .reduce((data, language) => ({
@@ -37,4 +31,4 @@ export const getLangsFrom = (repositories) => {
     .sort((a, b) => b.count - a.count);
 
   return getLanguage;
-}
+};
