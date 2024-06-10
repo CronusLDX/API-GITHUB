@@ -1,32 +1,40 @@
 import axios from "axios";
-
-import langColors from '../styles/LangColors'
+import langColors from '../styles/LangColors';
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
 });
- export const getUser = async (login) => api.get(`/users/${login}`);
 
- export const getRepos = async (login)=> api.get(`/users/${login}/repos`)
+export const getUser = async (login) => api.get(`/users/${login}`);
+
+export const getRepos = async (login) => api.get(`/users/${login}/repos`);
 
 export default api;
 
 export const getLangsFrom = (repositories) => {
+  // Verificação adicional para garantir que `repositories` é um array
+  if (!Array.isArray(repositories)) {
+    console.error("Expected repositories to be an array, but got:", repositories);
+    return [];
+  }
+
   let getLanguage = repositories
- .map((repository)=> repository.language)
- .reduce((data,language)=>({
-   ...data,
-   [language]: (data[language] || 0 ) + 1,
- }),[])
- 
- delete getLanguage.null
- // Serve para criar um novo array com todas as chaves do objeto que temos
-   getLanguage = Object.keys(getLanguage)
-   .map((language)=>({
-     name: language,
-     count: getLanguage[language],
-     color: langColors[language.toLowerCase()]
-   }))
-   .sort((a,b)=> b.count - a.count)
+    .map((repository) => repository.language)
+    .reduce((data, language) => ({
+      ...data,
+      [language]: (data[language] || 0) + 1,
+    }), {});
+
+  delete getLanguage.null;
+
+  // Criar um novo array com todas as chaves do objeto
+  getLanguage = Object.keys(getLanguage)
+    .map((language) => ({
+      name: language,
+      count: getLanguage[language],
+      color: langColors[language.toLowerCase()]
+    }))
+    .sort((a, b) => b.count - a.count);
+
   return getLanguage;
 }
