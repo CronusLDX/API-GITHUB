@@ -1,0 +1,33 @@
+{
+   "users":[
+   {
+    "login": "CronusLDX",
+    "name": "João Pedro Barbosa Duarte Ferreira",
+    "id": 141972472,
+    "avatar_url": "https://avatars.githubusercontent.com/u/141972472?v=4",
+    "followers": 1,
+    "following": 3,
+    "location": "Brasil, Belo Horizonte, MG",
+    "blog": "https://github.com/CronusLDX",
+    "company": "Oracle"
+   }
+   ] ,
+
+   "repos":[{
+    "id": 778539313,
+     "login" : "CronusLDX",
+     "name" : "Repo 1",
+     "description": "Repositorio descrição",
+     "html_url":"https://github.com/CronusLDX/Cadastro-de-Produtos",
+     "language": "JavaScript"
+   },
+   {
+    "id": 778539314,
+     "login" : "CronusLDX",
+     "name" : "Repo 1",
+     "description": "Repositorio descrição",
+     "html_url":"https://github.com/CronusLDX/Cadastro-de-Produtos",
+     "language": "Python"
+   }
+  ]
+}
