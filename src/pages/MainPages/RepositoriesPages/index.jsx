@@ -12,8 +12,8 @@ function RepositoriesPage() {
     const {login} = useParams();
   const[loading,setloading] = useState(true)
   const [user,setUser] = useState()
-  const [repositories, setRepositories] = useState();
-  const [language ,setLanguages] = useState();
+  const [repositories, setRepositories] = useState([]);
+  const [language ,setLanguages] = useState([]);
   const [currentlanguage,setcurrentlanguage] = useState();
   useEffect(() => {
     const loadData = async () => {
